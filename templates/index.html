@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <title>Мое Портфолио</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace; /* Ваш шрифт */
+            background-color: #000000; /* Черный фон */
+            color: #00FF00; /* Зеленый цвет текста */
+            line-height: 1.6; /* Высота строки для читабельности */
+            margin: 0;
+            padding: 0;
+        }
+
+        .roadmap {
+            position: relative;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(30, 30, 30, 0.9); /* Полупрозрачный фон */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); /* Хай-тек тень */
+            animation: fadeIn 1s ease-in; /* Анимация появления */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .roadmap h2 {
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 1);
+            margin-bottom: 20px; /* Отступ снизу для хедера */
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-left: 50px; /* Отступ для обозначения линии времени */
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 20px; /* Положение вертикальной линии */
+            top: 0;
+            width: 2px; /* Ширина линии времени */
+            height: 100%;
+            background: rgba(0, 255, 255, 0.5);
+        }
+
+        .timeline-item {
+            margin: 20px 0;
+            position: relative;
+            padding-left: 40px;
+            animation: slideIn 0.5s forwards; /* Анимация для появления элементов */
+            opacity: 0; /* Прячем элемент до анимации */
+            transition: transform 0.3s; /* Плавный переход для эффектов */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .timeline-item h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 1.2em; /* Размер заголовка */
+        }
+
+        .timeline-item ul {
+            margin: 10px 0 0; /* Отступ у списка */
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 10px; /* Положение метки */
+            background: rgba(0, 255, 255, 0.7);
+            border-radius: 50%;
+            width: 12px; /* Размер метки */
+            height: 12px; /* Размер метки */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 1); /* Хай-тек тень для меток */
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.02); /* Увеличение элемента при наведении */
+            background: rgba(0, 255, 255, 0.1); /* Подсветка при наведении */
+            border-radius: 8px; /* Подобранные углы для эффекта */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1>Timur Veliev</h1>
+
+            <img src="{{ url_for('static', filename='images/my_photo.jpg') }}" alt="Мое фото">
+            <p>Age: 14 y.o.</p>
+            <p>Email: timurfix21@gmail.com</p>
+            <p>Hi there! I'm Timur, middle Python developer. Currently based in Russia! Here you can see my done projects and projects in development.</p>
+            <a href="https://github.com/seniorspeedex" class="github-button">My GitHub</a>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h2>My projects</h2>
+            </header>
+            <div class="project-slider" id="project-slider">
+                <div class="project-list" id="project-list">
+                    <div class="project" onclick="window.location.href='/project1'">
+                        <h3>Q&A bot with AI for RZD</h3>
+                        <p>A bot that helps you quickly find information about the statutory agreement</p>
+                    </div>
+                    <div class="project" onclick="window.location.href='/project2'">
+                        <h3>A database search site for similar images</h3>
+                        <p>A website based on a case by RKN for searching for similar images in a database with images</p>
+                    </div>
+                    <div class="project" onclick="window.location.href='/project3'">
+                        <h3>Video and audio installers from YouTube</h3>
+                        <p>These projects made with using Tkinter.</p>
+                    </div>
+                    <div class="project" onclick="window.location.href='/project4'">
+                        <h3>Project X</h3>
+                        <p>In progress.. Stay tuned.</p>
+                    </div>
+                    <div class="project" onclick="window.location.href='/project5'">
+                        <h3>Project Y</h3>
+                        <p>In progress.. Stay tuned.</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="roadmap">
+                <h2>My supreme goals</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Finish school</h3>
+                        <p>Current goal - become a senior developer.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Internship in big companies</h3>
+                        <p>For new experience.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Enroll in an IT university</h3>
+                        <p>The main candidates: ITMO, Innopolis, HSE.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const projectSlider = document.getElementById('project-slider');
+        let isDown = false; // Состояние перетаскивания
+        let startX; // Начальная позиция курсора
+        let scrollLeft; // Текущая позиция прокрутки
+
+        projectSlider.addEventListener('mousedown', (e) => {
+            isDown = true; // Флаг нажатия мыши
+            startX = e.pageX - projectSlider.offsetLeft;
+            scrollLeft = projectSlider.scrollLeft;
+            projectSlider.style.cursor = 'grabbing'; // Изменяем курсор на захват
+        });
+
+        projectSlider.addEventListener('mouseleave', () => {
+            isDown = false; // Сброс флага
+            projectSlider.style.cursor = 'grab'; // Изменяем курсор обратно
+        });
+
+        projectSlider.addEventListener('mouseup', () => {
+            isDown = false; // Сброс флага
+            projectSlider.style.cursor = 'grab'; // Изменяем курсор обратно
+        });
+
+        projectSlider.addEventListener('mousemove', (e) => {
+            if (!isDown) return; // Если потащить не начали, выходим
+            e.preventDefault();
+            const x = e.pageX - projectSlider.offsetLeft;
+            const walk = (x - startX) * 2; // Ускорение прокрутки
+            projectSlider.scrollLeft = scrollLeft - walk; // Прокручиваем влево или вправо
+        });
+    </script>
+</body>
+</html>
